@@ -11,7 +11,6 @@ def vgg(input_shape, num_classes):
         input_shape=input_shape, pooling=None, classes=num_classes,
         classifier_activation='softmax'
         )
+    vgg.trainable = False
     print(vgg.summary())
     return vgg
-
-
