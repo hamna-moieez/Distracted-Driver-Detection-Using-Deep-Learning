@@ -50,3 +50,7 @@ def get_data():
 
         return train_dataset, validation_dataset
 
+def augment_data(input):
+        x = tf.keras.layers.RandomFlip('horizontal')(input)
+        data_augmentation = tf.keras.layers.RandomRotation(0.2)(x)
+        return data_augmentation

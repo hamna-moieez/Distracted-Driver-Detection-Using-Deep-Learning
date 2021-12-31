@@ -1,8 +1,7 @@
 import utils
 import tensorflow as tf
-from tensorflow import keras
  
-def create_model(input_shape, num_classes, base_learning_rate):
+def create_model(input_shape, num_classes):
     model = tf.keras.Sequential([
     tf.keras.Input(shape=input_shape),
     tf.keras.layers.RandomFlip("horizontal"), 
@@ -18,11 +17,6 @@ def create_model(input_shape, num_classes, base_learning_rate):
     tf.keras.layers.Dense(128, activation='relu'),
     tf.keras.layers.Dense(num_classes)
     ])
-    model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=base_learning_rate),
-              loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
-              metrics=['accuracy'])
-
-    print(model.summary())
     return model
 
 
