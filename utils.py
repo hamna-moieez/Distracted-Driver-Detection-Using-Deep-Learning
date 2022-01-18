@@ -61,25 +61,24 @@ def plot_metrics(history):
         loss = history.history['loss']
         val_loss = history.history['val_loss']
 
-        plt.figure(figsize=(8, 8))
-        plt.subplot(2, 1, 1)
-        plt.plot(acc, label='Training Accuracy')
-        plt.plot(val_acc, label='Validation Accuracy')
-        plt.legend(loc='lower right')
-        plt.ylabel('Accuracy')
-        plt.ylim([min(plt.ylim()),1])
-        plt.title('Training and Validation Accuracy')
-
-        plt.subplot(2, 1, 2)
-        plt.plot(loss, label='Training Loss')
-        plt.plot(val_loss, label='Validation Loss')
-        plt.legend(loc='upper right')
-        plt.ylabel('Cross Entropy')
-        plt.ylim([0,1.0])
-        plt.title('Training and Validation Loss')
+        plt.plot(history.history['accuracy'])
+        plt.plot(history.history['val_accuracy'])
+        plt.title('model accuracy')
+        plt.ylabel('accuracy')
         plt.xlabel('epoch')
+        plt.legend(['train', 'test'], loc='upper left')
+        # Save accuracy figure
+        plt.savefig('accuracy.png')
         plt.show()
-        plt.savefig('metrics.png')
+        plt.plot(history.history['loss'])
+        plt.plot(history.history['val_loss'])
+        plt.title('model loss')
+        plt.ylabel('loss')
+        plt.xlabel('epoch')
+        plt.legend(['train', 'test'], loc='upper left')
+        # Save loss figure
+        plt.savefig('loss.png')
+        plt.show()
         return acc, val_acc, loss, val_loss
 
 def plot_finetuned(history_fine, initial_epochs, acc, val_acc, loss, val_loss):
