@@ -5,6 +5,7 @@ import vgg
 import transferlearn
 import os
 import tensorflow as tf
+
 import pickle
 
 NUM_CLASSES = 10
@@ -13,6 +14,7 @@ NUM_EPOCHS = 10
 INPUT_SHAPE = (224,224,3)
 weights_path = os.path.join(utils.BASE_PATH, 'weights/')
 history_path = os.path.join(utils.BASE_PATH, 'history/')
+
 def compile_model(model, learning_rate):
     model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate),
                 loss=tf.keras.losses.CategoricalCrossentropy(from_logits=True),
@@ -39,6 +41,7 @@ train_data, val_data = utils.get_data()
 '''
 TRAIN CUSTOM MODEL
 '''
+
 custom = model.create_model(INPUT_SHAPE, NUM_CLASSES)
 custom_model = compile_model(custom, LEARNING_RATE)
 history = fit_model(custom_model, NUM_EPOCHS, train_data, val_data)
